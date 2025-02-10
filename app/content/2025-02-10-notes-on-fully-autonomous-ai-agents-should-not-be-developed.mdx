@@ -1,0 +1,104 @@
+---
+title: 'Notes on: "Fully Autonomous AI Agents Should Not be Developed"'
+description:
+  Reading notes on "Fully Autonomous AI Agents Should Not be Developed" by
+  Margaret Mitchell, Avijit Ghosh, Alexandra Sasha Luccioni, Giada Pistilli
+date: 2025-02-10
+categories:
+  - notes
+  - highlights
+cover: /content/2025-02-10-notes-on-fully-autonomous-ai-agents-should-not-be-developed/fully-autonomous-ai-agents-should-not-be-developed.png
+---
+
+## Reference
+
+- **Title**: Fully Autonomous AI Agents Should Not be Developed
+- **Authors**: Margaret Mitchell, Avijit Ghosh, Alexandra Sasha Luccioni, Giada
+  Pistilli
+- **Affiliation**: Hugging Face
+- **Link**: [arXiv:2502.02649v2](http://arxiv.org/abs/2502.02649v2)
+
+## Summary
+
+This paper is from the Hugging Face ML & Society team usual suspects - I have to
+look into "Avijit Ghosh" it's my first time reading something from him. The
+authors argue against the development of fully autonomous AI agents: as AI
+autonomy increases, so do the associated risks—especially in terms of safety,
+privacy, and security. Instead, they advocate for semi-autonomous systems with
+clearly defined constraints and human oversight. It's a very well-researched and
+clear paper that I expect is going to become a good entry point for these
+topics.
+
+## Definition of AI Agents
+
+- The authors define AI agents as **"computer software systems capable of
+  creating context-specific plans in non-deterministic environments."** they
+  contrast this with 22 (!) alternative definitions.
+- I like the inclusion of **environment** and **planning** in their definition,
+  as it emphasizes goal-oriented behavior. However, to me, it lacks the
+  **acting** component that distinguishes predictive/generative models from
+  agents.
+
+### Agency and Autonomy Levels
+
+![Levels of AI agent from "Fully Autonomous AI Agents Should Not be Developed"](/content/2025-02-10-notes-on-fully-autonomous-ai-agents-should-not-be-developed/fully-autonomous-ai-agents-should-not-be-developed-levels-of-ai-agents.png)
+
+- An interesting section questions whether AI systems actually have "agency,"
+  arguing that **human agency differs fundamentally from AI agency** due to a
+  lack of intentionality and reasoning.
+- The authors propose **five levels of AI agency** (I've reproduced their table
+  above):
+  1. **Simple processor**: Simple prompt-response models.
+  2. **Router**: Determines basic program flow.
+  3. **Tool Call**: Selects and applies tools.
+  4. **Multi-Step Agents**: Plans and executes sequences autonomously.
+  5. **Fully Autonomous Agents**: Creates and executes new code without human
+     intervention.
+- I like this framework but feel it ignores the difference between human at
+  design time and human at runtime, especially after level 1. Taking into
+  account how humans interact with the system at runtime could be a valuable
+  addition. From Human-in-the-loop where AI actions require explicit human
+  approval to Human-on-the-loop where AI operates independently but remains
+  interruptible with either static or dynamic constraints.
+
+### Autonomy/Agency benefits, risks and trade-offs
+
+- The authors evaluate autonomy across various ethical and practical dimensions,
+  identifying **increased risks** with increased autonomy.
+- They assess AI agents arount 14 dimensions, the appendix contains a detailed
+  **risk-benefit table**, which is a particularly insightful resource as they
+  did a thoughful analysis (I've reproduced their table here).
+
+![Value-Risk Assessment Across Agent Autonomy Levels from "Fully Autonomous AI Agents Should Not be Developed"](/content/2025-02-10-notes-on-fully-autonomous-ai-agents-should-not-be-developed/fully-autonomous-ai-agents-should-not-be-developed-levels-of-ai-agents-value-risk-assessment.png)
+
+- I found **"human-likeness"** problematic as a category as it doesn't encompass
+  an actual value but more a way to provide different kind of values:
+  - **Accessibility**: "Acting human-like" can help more users understand and
+    interact with the system.
+  - **Empathy/context adaptation**: the ability for the system to understand
+    users « state of mind » / mood to adapt its behavior thus reducing cognitive
+    load / improving the personalization.
+  - I think those values are important but that "human-likeness" can be a way to
+    provide those.
+
+## Final Thoughts
+
+- **Strengths**:
+  - Well-structured breakdown of AI autonomy levels and ethical trade-offs.
+  - Clear articulation of risks associated with full autonomy.
+  - Thought-provoking title, I think I ultimately agree but to me you could
+    design a level 5 agent, that generates parts of its own code but still have
+    dynamic levels of autonomy / human oversight.
+- **Limitations**:
+  - Lacks getting into the nuances between human designers and human users.
+- **Odds and ends**:
+  - The _"Asimov point"_ is reached quite quickly, it might be unavoidable but
+    it’s getting more than a cliché at this point and EVERYONE fails to mention
+    that in those very books, Asimov shows that those laws can be ignored /
+    overlooked.
+  - I enjoyed the
+    [1983 Soviet missile false alarm incident](https://en.wikipedia.org/wiki/1983_Soviet_nuclear_false_alarm_incident)
+    mention — it's a compelling example of the risks of full autonomy, I've been
+    using the
+    [the 2000 Paris metro accident](https://fr.wikipedia.org/wiki/Accident_de_métro_du_30_août_2000_à_Paris)
+    for similar-ish purposes but it's way less dramatic!
