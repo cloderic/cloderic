@@ -47,6 +47,7 @@ export default async function Page({ params }) {
           src={frontmatter.cover}
           alt={`cover for "${frontmatter.title}"`}
           fill
+          sizes="(max-width: 65ch) 100vw, 65ch"
         />
       ) : null}
       <header className="mb-4">

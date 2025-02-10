@@ -24,7 +24,6 @@ export default function HeroImage({
         width={width == null && !fill ? 750 : width}
         height={height}
         fill={fill}
-        sizes="(max-width: 65ch) 100vw, 65ch"
         priority={true}
         {...otherProps}
       />
