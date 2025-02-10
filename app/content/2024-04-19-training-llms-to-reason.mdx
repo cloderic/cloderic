@@ -1,6 +1,11 @@
 ---
-title: "Training LLMs to reason: Cogment's Integrated Approach to Trustworthy Natural Language Interactions"
-description: In this blog post, I discuss the architecture we designed to enable trustworthy natural language interactions between human and AIs, particularly in industrial applications.
+title:
+  "Training LLMs to reason: Cogment's Integrated Approach to Trustworthy Natural
+  Language Interactions"
+description:
+  In this blog post, I discuss the architecture we designed to enable
+  trustworthy natural language interactions between human and AIs, particularly
+  in industrial applications.
 venue: AIR's blog
 date: 2024-04-19
 categories:
@@ -9,8 +14,91 @@ categories:
 cover: /content/2024-04-19-training-llms-to-reason/cogment-grounded-aligned-nl-conversation.jpg
 ---
 
-In this blog post, I discuss the architecture we designed to enable trustworthy natural language interactions between human and AIs, particularly in industrial applications.
+> In this blog post, I discuss the architecture we designed to enable
+> trustworthy natural language interactions between human and AIs, particularly
+> in industrial applications. It was originally published on
+> [AIR's blog](https://ai-r.com/blog/training-llms-to-reason).
 
-While LLMs have made unprecedented progress in mastering natural language conversation and expression, LLMs are not general AIs able to reason about the world. They are not even good at tracking the state of a simple domain. Cogment embraces a multi-agent approach to design decision making systems with a key principle: separate responsibilities into specialized, cooperating agents. In this context, the approach enables the LLM to manage language, and orchestrate it with other components/agents to actually create the ability to reason. Cogment is uniquely positioned to enable that orchestration of specialized components.
+AIR’s vision combines human expertise with AI capabilities to create
+["superteams"](/content/2023-10-25-aidevworld-superteams-roadmap) to augment
+human decision making capabilities. While AI can handle vast data and adapt to
+new challenges, human intuition and judgment are crucial for critical
+decision-making, particularly in complex, unforeseen and ever-changing
+situations.
 
-Read the [full article on AIR's website](https://ai-r.com/blog/training-llms-to-reason).
+One key aspect of human-AI collaboration is bidirectional interactions: enabling
+AIs to provide recommendation, response to queries, context and requests for
+clarification and for humans to convey their intent, give instruction and give
+feedback to AI agents. While interacting through traditional “structured” user
+interfaces patterns is the de facto standard and a great way to make
+communication clear and explicit, with the advent of LLMs, natural language has
+become a viable option.
+
+Natural language interactions are richer and more nuanced, they can express both
+fuzziness or uncertainty, and also clarity. They enable us to convey context. In
+terms of user interface, they enable a text box, or even a microphone, to take
+the place of complex nested components, thus moving towards a general UI. This
+makes them more accessible, enabling a broader audience to effectively engage
+with machines.
+
+However, even as LLMs progressed quickly over the last months, they are still
+lacking in important dimensions. Stanford University’s
+[“The AI Index 2024 Annual Report”](https://aiindex.stanford.edu/report/) notes
+in its introduction:
+
+> Progress accelerated in 2023. New state-of-the-art systems like GPT-4, Gemini,
+> and Claude 3 are impressively multimodal: They can generate fluent text in
+> dozens of languages, process audio, and even explain memes. As AI has
+> improved, it has increasingly forced its way into our lives. Companies are
+> racing to build AI-based products, and AI is increasingly being used by the
+> general public. But current AI technology still has significant problems. **It
+> cannot reliably deal with facts, perform complex reasoning, or explain its
+> conclusions.**
+
+With this approach, we address the first two challenges.
+
+## LLMs Struggle with Dynamic Decision-Making Scenarios
+
+Decision support systems are crucial for providing the right information to
+determine best options, and while current technologies like document indices and
+advanced embedding techniques for retrieval have largely solved the issue of
+querying knowledge through LLMs, challenges remain in dynamic and deeply
+contextual environments involving causality and reasoning. This is evident when
+playing chess with ChatGPT, where it can lose track of the board's state or even
+make illegal moves.
+
+To better understand these limitations, we conducted experiments using the
+Blocksworld domain - a planning domain commonly used in artificial intelligence
+research where a set of blocks are stacked on a table, and the agent can
+rearrange the blocks: stacking one block on another or moving blocks to the
+table. In these experiments we assembled a prompt describing the domain, an
+initial state and a few legal moves to be applied to the board; we then asked
+the LLM if a particular move would be legal. Our results, to be fully published
+soon, show that:
+
+- GPT3.5 only gets a precision of **34%** when asked if a legal move is indeed
+  legal and of **75%** for illegal moves,
+- GPT-4 improved with a precision of **93%** and **90%**, respectively.
+
+These figures pose significant challenges for real-world enterprise applications
+where higher precision is crucial for trustworthy human-AI collaboration.
+
+## Cogment’s approach to trustworthy natural language interactions
+
+While LLMs have made unprecedented progress in mastering natural language
+conversation and expression, LLMs are not general AIs able to reason about the
+world. As discussed, they are not even good at tracking the state of a simple
+domain. [Cogment](https://cogment.ai) embraces a multi-agent approach to design
+decision making systems with a key principle: separate responsibilities into
+specialized, cooperating agents. In this context, the approach enables the LLM
+to manage language, and orchestrate it with other components/agents to actually
+create the ability to reason. Cogment is uniquely positioned to enable that
+orchestration of specialized components as it offers:
+
+- A generic API to let agents act in environments, such as digital twins;
+- A generic API to dynamically configure and execute trials involving agents
+  acting in an environment towards a given objective;
+- A distributed, micro service based, runtime able to scale the execution of
+  trials;
+- A datastore to gather interaction data and consume them for analytics or
+  training.

@@ -1,6 +1,11 @@
 ---
-title: "Building AI Assistants for Augmenting Human Operators: A Roadmap Towards Creating Superteams"
-description: In this talk, I outline a blueprint for creating effective Human-AI Superteams focusing on the synergistic integration of AI and human operators in complex domains like energy and defense.
+title:
+  'Building AI Assistants for Augmenting Human Operators: A Roadmap Towards
+  Creating Superteams'
+description:
+  In this talk, I outline a blueprint for creating effective Human-AI Superteams
+  focusing on the synergistic integration of AI and human operators in complex
+  domains like energy and defense.
 venue: AI DevWorld, Santa Clara, California
 date: 2023-10-25
 categories:
@@ -10,8 +15,209 @@ categories:
 cover: /content/2023-10-25-aidevworld-superteams-roadmap/human-ai-superteams.jpg
 ---
 
-I this talk, later expended upon in a [full article on AIR's website](https://ai-r.com/blog/a-blueprint-for-crafting-effective-human-ai-superteams), I outline a blueprint for creating effective **Human-AI Superteams** focusing on the synergistic integration of AI and human operators in complex domains like energy and defense. I emphasize the necessity of human involvement in AI-driven processes for improvisation, decision-making, and maintaining trust and accountability. The approach suggests a balance between automation and human insight, ensuring adaptability and resilience through collaborative human-AI interactions. This strategy is presented as a way to enhance human capabilities without replacing them, leveraging AI to handle data overload while maintaining critical human control in decision-making processes.
+> This article is a written version of a talk given at
+> [AI Dev World](https://apiworld2023.sched.com/event/1Tuaz) in october 2023. It
+> was originally published on
+> [AIR's blog](https://ai-r.com/blog/a-blueprint-for-crafting-effective-human-ai-superteams).
 
-For further information about the talk, refer to [AI DevWorld website](https://apiworld2023.sched.com/event/1Tuaz).
+In an era where technology is advancing at an unprecedented pace, the prospect
+of achieving full automation has become a tantalizing goal. From intelligent
+assistants streamlining our daily tasks to complex AI systems shaping
+industries, the potential benefits are vast. However, it has become increasingly
+clear that the synergy between artificial intelligence and human operators holds
+the key to unlocking the true potential of these systems. **Full automation is
+not the goal.**
 
+The essence of human capability lies in our innate ability to improvise and
+creatively navigate unforeseen challenges—a talent that artificial intelligence
+struggles to replicate. Moreover, societal trust and regulatory frameworks
+necessitate human involvement to establish clear accountability chains,
+particularly in critical systems such as defense, energy production, healthcare,
+and the food and medicine supply chain. This trust is rooted in the
+understanding that humans can exercise judgment and make decisions based on a
+nuanced understanding of context—a quality that AI systems currently lack.
+Additionally, the dark side of full automation emerges when considering the
+potential loss of skills in critical tasks. As an example,
+[the 2000 Paris metro accident](https://fr.wikipedia.org/wiki/Accident_de_métro_du_30_août_2000_à_Paris)
+serves as a stark reminder of such dangers. In this accident, the reliance on
+automatic piloting systems left the human driver unprepared to manually control
+the train when needed, highlighting the risks associated with de-skilling human
+operators in the face of automation system malfunctions, whether caused by
+accidents or cyber attacks. **The advent of AI-powered tools makes it imperative
+to strike a balance between automation and human involvement to mitigate risks,
+ensure adaptability, and maintain the resilience of our systems.**
 
+However, in the face of escalating complexity, the necessity for AI assistance
+becomes evident as humans grapple with a myriad of challenges. One key aspect is
+the deluge of data that accompanies the modern landscape, particularly in
+industries like renewable energy. Compared to traditional thermal power
+stations, the proliferation of renewable production sites and sensors overwhelms
+traditional analytical capacities. Moreover, the high volatility inherent in
+sectors such as renewable energy demands a level of adaptability beyond human
+capability alone, given the increasing interconnectedness of actors and the
+heightened reliance on unpredictable weather patterns. As global standards rise
+to meet the imperatives of sustainability, the demand for carbon-free sources
+intensifies, placing a strain on traditional human-driven methodologies.
+Furthermore, a skilled labor shortage, exemplified in the renewable energy
+sector, where both new and legacy actors vie for talent from the same pool,
+underscores the urgency of augmenting human capabilities with AI assistance. In
+this intricate landscape, the **synergy between human intuition and AI prowess
+emerges as a potent force**, enabling us to not only navigate complexity but to
+thrive amid the evolving challenges of our technological age.
+
+At AI Redefined, we believe in the concept of **superteams**—a harmonious
+collaboration between AI agents and human minds, each contributing unique
+strengths to create a formidable force. Designing and implementing a superteam
+requires us to rethink the way we design AI systems and primarily center our
+choices around collaboration. In this article we will look at 4 main design
+pillars that contribute to building efficient superteams.
+
+# Systemic approach
+
+From the inception of a system where an AI agent aids a human operator, a
+**multi-agent system** naturally emerges, with each agent representing a
+distinct decision-making entity. This design choice not only reflects the
+complexity of real-world scenarios but also introduces a host of benefits. The
+allocation of decision-making to multiple agents enables a more granular
+approach, where additional agents can be introduced to address specific
+components, fostering a modular and scalable architecture.
+
+In practice, the advantages of a multi-agent system become evident as the design
+necessitates considering bidirectional signals from the outset. Beyond the
+conventional flow of information from AI to humans, the design requires
+thoughtful consideration of explicit, self-reported feedback from humans.
+Equally important is understanding how behavioral feedback from human operators
+can be incorporated into the system's decision-making loop. This bidirectional
+communication, rooted in a multi-role system architecture, facilitates seamless
+interaction between smaller, focused components, creating a dynamic interplay
+between AI and human decision-makers.
+
+# Shared experience training
+
+Opting to train AI agents in tandem with human operators stands as our second
+design pillar. **Human-in-the-Loop Learning (HILL) techniques enable the
+comprehensive training of the entire human/AI superteam**. The advantages of
+this approach are numerous.
+
+A first key benefit is significantly reducing both data requirements and
+training time. These critical aspects are highlighted in studies such our own
+paper
+["Human-AI Interactions in Real-World Complex Environments Using a Comprehensive Reinforcement Learning Framework"](/content/2023-05-29-ala-aamas-human-ai-interactions)
+presented during AAMAS 2023 or one of the reference Reinforcement Learning with
+Human Feedback paper
+["Deep TAMER: Interactive Agent Shaping in High-Dimensional State Spaces"](https://arxiv.org/abs/1709.10163),
+presented at AAAI 2018. Furthermore, the incorporation of human data during
+training has been proven instrumental in improving collaborative performance, as
+evidenced in the NeurIPS 2019 publication,
+["On the Utility of Learning about Humans for Human-AI Coordination."](https://arxiv.org/abs/1910.05789).
+
+Crucially, the advantages of training together extend beyond the AI perspective,
+impacting the human experience within the collaborative framework. Studies like
+["Continual Learning for Instruction Following from Realtime Feedback,"](https://arxiv.org/abs/2212.09710)
+presented at NeurIPS in 2023, shed light on how training from interactive human
+data not only enhances trust and alignment but also empowers human operators to
+better leverage the capabilities of the AI agents.
+
+This dual-benefit paradigm emphasizes the symbiotic relationship between AI and
+human entities, promoting a collaborative evolution that is not only efficient
+but also fosters a deeper understanding and alignment between the two
+decision-making entities.
+
+# Meaningful human control
+
+The third foundational design pillar centers on the concept of meaningful human
+control, recognizing that merely placing humans in the loop is insufficient if
+their agency is diminished, reduced to a mere rubber stamp for AI decisions. To
+address this concern and uphold the principle of meaningful human control, a set
+of key considerations comes to the forefront.
+
+Firstly, it is imperative to provide humans with sufficient information,
+presented in the most objective manner possible. Transparency and clarity in the
+information conveyed allow human operators to understand the rationale behind
+AI-generated decisions, fostering a sense of comprehension and trust in the
+system. Additionally, dynamic human-in-the-loop supervision becomes crucial,
+especially for critical decisions. This approach acknowledges the unpredictable
+nature of certain scenarios and ensures that human operators remain actively
+engaged in the decision-making process. Through dynamic supervision, humans can
+intervene when necessary, injecting their expertise and judgment into the system
+to guide it through complex situations.
+
+Equally important is ensuring that human operators have access to diverse
+information and intervention modalities. This encompasses not only the
+availability of relevant data but also the tools and interfaces required for
+effective intervention. Enabling human operators to interact seamlessly with the
+system ensures that their control remains meaningful, allowing them to influence
+and shape decisions based on their expertise and understanding of the broader
+context.
+
+In essence, the pursuit of meaningful human control acknowledges the **need for
+humans to be active participants in the decision-making loop**, armed with the
+information and tools necessary to contribute their unique insights and
+judgment. By embracing these principles, we construct systems that not only
+involve humans but empower them, fostering a collaborative and effective
+partnership between human operators and AI entities.
+
+# Continual learning
+
+The fourth pivotal design pillar revolves around the concept of continual
+learning, recognizing the dynamic nature of environments and the evolving
+expectations placed upon AI systems. In an ever-changing landscape, the static
+deployment of AI assistants becomes inadequate, and the repetition of identical
+tasks risks alienating the users of the system. Therefore, crafting AI
+assistants that not only adapt to shifting contexts but also engage in continual
+learning as they are utilized becomes imperative.
+
+A noteworthy example of this principle in action is illustrated by AIR’s
+collaboration with the [confiance.ai](https://www.confiance.ai/) consortium
+during the development of a prototype for human-driven quality control model
+fine-tuning. In this scenario, an AI agent collaborates with an operator to
+explore the vast space of training hyperparameters, with the ultimate goal of
+maximizing the operator's objectives. Crucially, the AI assistant undergoes
+continual learning by assimilating insights from the operator's behavioral
+feedback. This dynamic process enables the AI to progressively take shortcuts in
+repetitive tasks while maintaining human control, accommodating changes in
+objectives and ensuring the assistant evolves in tandem with the user's evolving
+needs.
+
+This pattern of continual learning not only **ensures that AI systems remain
+relevant in dynamic environments but also prevents the erosion of user
+engagement by alleviating the burden of repetitive tasks**. By actively learning
+from human operators, the AI becomes a flexible and adaptive partner, enhancing
+its utility and effectiveness over time. In essence, the integration of
+continual learning into the design philosophy of AI assistants reinforces the
+commitment to building systems that evolve, learn, and align with the
+ever-shifting demands of their human collaborators.
+
+# Human-centered AI design
+
+In conclusion, as we chart the course toward building efficient superteams of AI
+agents and human operators, we find inspiration in the words of Marot et al. in
+their paper,
+["Towards an AI Assistant for Power Grid Operators."](https://arxiv.org/abs/2012.02026)
+They aptly highlight the evolving challenges faced by control rooms and the
+imperative of adapting to new scales of complexity without overwhelming human
+operators. **The journey towards superteams requires a departure from the
+historical approach of incrementally adding applications and screens**. Instead,
+as the authors do, we advocate for a paradigm shift, embracing a
+**human-centered design philosophy where machines and operators co-adapt**.
+
+The four design pillars—systemic approach, shared experience training,
+meaningful human control, and continual learning—form the foundation of this
+paradigm. By fostering a modular and scalable architecture through a multi-agent
+system, we ensure adaptability to complex real-world scenarios. The integration
+of Human-in-the-Loop techniques in training not only enhances AI efficiency but
+also empowers human operators, fostering a symbiotic relationship. The principle
+of meaningful human control reinforces the importance of transparency, dynamic
+supervision, and diverse intervention modalities to keep humans at the forefront
+of decision-making. Finally, continual learning emerges as the dynamic force
+ensuring AI systems remain relevant and engaged with users, preventing the
+alienation caused by static deployments and repetitive tasks. As we embrace
+these design principles, we embark on a journey to redefine the future of AI
+collaboration—a future where human operators and AI entities co-evolve,
+co-adapt, and co-create, placing the human at the center of decisions.
+
+At AI Redefined, our commitment to these principles is embodied in
+[Cogment](https://cogment.ai/), our platform designed to train and orchestrate
+superteams. Cogment embraces a human-centered approach, facilitating meaningful
+collaboration between AI and human decision-makers. **It's a testament to our
+belief that technology should empower, not replace, human capabilities.**
