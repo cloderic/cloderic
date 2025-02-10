@@ -18,6 +18,9 @@ function img(props) {
   );
 }
 
+function NextImage({ className, ...otherProps }) {
+  return <Image {...otherProps} className={clsx(className, 'not-prose')} />;
+}
 function h1(props) {
   return <Title as="h1" {...props} />;
 }
@@ -68,7 +71,8 @@ const baseComponents = {
   Audio,
   SoundCloud,
   YouTube,
-  Tweet
+  Tweet,
+  NextImage
 };
 
 export const components = {
