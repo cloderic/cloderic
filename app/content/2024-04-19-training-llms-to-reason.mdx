@@ -17,14 +17,13 @@ cover: /content/2024-04-19-training-llms-to-reason/cogment-grounded-aligned-nl-c
 > In this blog post, I discuss the architecture we designed to enable
 > trustworthy natural language interactions between human and AIs, particularly
 > in industrial applications. It was originally published on
-> [AIR's blog](https://ai-r.com/blog/training-llms-to-reason).
-
-AIR’s vision combines human expertise with AI capabilities to create
-["superteams"](/content/2023-10-25-aidevworld-superteams-roadmap) to augment
-human decision making capabilities. While AI can handle vast data and adapt to
-new challenges, human intuition and judgment are crucial for critical
-decision-making, particularly in complex, unforeseen and ever-changing
-situations.
+> [AIR's blog](https://ai-r.com/blog/training-llms-to-reason). AIR’s vision
+> combines human expertise with AI capabilities to create
+> ["superteams"](https://ai-r.com/blog/a-blueprint-for-crafting-effective-human-ai-superteams)
+> to augment human decision making capabilities. While AI can handle vast data
+> and adapt to new challenges, human intuition and judgment are crucial for
+> critical decision-making, particularly in complex, unforeseen and
+> ever-changing situations.
 
 One key aspect of human-AI collaboration is bidirectional interactions: enabling
 AIs to provide recommendation, response to queries, context and requests for
@@ -102,3 +101,275 @@ orchestration of specialized components as it offers:
   trials;
 - A datastore to gather interaction data and consume them for analytics or
   training.
+
+![Diagram showing the functional flow on a Cogment-powered AI assistant](/content/2024-04-19-training-llms-to-reason/cogment-llm-whatif-flow.png)
+
+_The diagram above represents the functional flow of an AI assistant able to
+answer questions on a dynamic system with an approach that builds upon concepts
+introduced by_
+[_retrieval augmented generation (RAG)_](https://proceedings.neurips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html)
+_and_ [_LLM tooling_](https://arxiv.org/abs/2302.04761)_._
+
+1.  **Natural Language Query**: The process begins with a user posing a natural
+    language query to the system. In this example, the query is about the
+    potential impacts of reducing the throughput of a machine. The natural
+    language query is sent to an LLM agent orchestrated by Cogment.
+2.  **Trial rollouts & results synthesis**: The LLM, understanding the user’s
+    intent and context, then leverages Cogment to configure and run trials.
+    These trials involve a digital twin or simulation of the environment and,
+    potentially, one or more agents that can be configured to act following the
+    user’s intent. Trial trajectories and outcome are then returned to the LLM
+    in order to formulate a response. The user can ask further questions and
+    provide feedback, for example by applying the recommended tactics.
+3.  **Continual Fine Tuning from Human & Trial Feedback:** In this setup, both
+    the human and the trial provide valuable feedback to the agents. Human
+    feedback can express if the response was satisfactory. Trial feedback can
+    express if the provided goals were attainable or if the specified strategy
+    led to achieving the desired outcome. Both signals can be used to tune the
+    LLM to make a better use of the digital twin/simulation, i.e. to be
+    **grounded**, and to give answers that are more **aligned** with the user’s
+    expectations.
+
+With an improved traceability between the natural language queries, the executed
+trials, the raw results and the natural language responses, this modular
+approach delivers the trustworthiness necessary to industrial and enterprise
+applications. Four pieces of the puzzle and how Cogment addresses them We
+identified four puzzle pieces to deliver on this approach and we are making
+strides in building and validating them.
+
+## Facilitate Human-AI Natural Language interactions
+
+The first piece of the puzzle is facilitating the interaction between a LLM and
+human; it is largely a solved problem. Currently, a variety of solutions exist
+to host and query large language models (LLMs), ranging from commercial Software
+as a Service (SaaS) APIs provided by companies like
+[OpenAI](https://openai.com/), [Anthropic](https://www.anthropic.com/), and
+[Cohere](https://cohere.com/), to infrastructure products like
+[Amazon Bedrock](https://aws.amazon.com/bedrock/), and open-source libraries
+such as
+[Hugging Face's TGI](https://github.com/huggingface/text-generation-inference).
+
+Despite these advancements, there remain significant limitations. Many existing
+solutions are constrained by the specific LLMs they support or the platforms on
+which they can be deployed. This can pose challenges for businesses looking to
+integrate AI into diverse and changing environments. Moreover, while these
+platforms excel at serving LLMs, they often fail to consider crucial human
+factors that influence the effectiveness of AI interactions.
+
+To address those limitations, our approach emphasizes **bidirectional
+collaboration patterns**. They are reusable interaction components, from UI to
+data flow, designed to optimize the user experience while enabling the AI system
+to capture both behavioral and self-reported feedback. Such feedbacks are
+invaluable, as they drive continuous improvement and adaptation of AI models to
+better meet user needs. We are building, upon Cogment, a first version of this
+vision. It includes several innovative features:
+
+1.  **Hosting:** Leveraging Cogment, we implement a conversation orchestration
+    system that manages dialogues involving one or more LLMs as well as other
+    agents to implement, for example, Retrieval Augmented Generation (RAG)
+    strategies. As any other Cogment-based system, it can be deployed both in
+    cloud environments and on-premises using Kubernetes.
+2.  **User Experience (UX):**
+    - **Responses Streaming:** improving the perceived response time by
+      streaming AI agent responses mimicking natural, fluid human conversation..
+    - **Collaboration Patterns:** We have implemented specific patterns for both
+      standard operations and data collection in the API and with matching UI
+      components. These patterns leverage self-reported and behavioral feedback
+      from users, which are crucial for refining AI responses and
+      functionalities.
+3.  **Integration Capabilities:** Our platform is designed to be highly
+    compatible with major AI models and APIs. This includes integration with
+    Hugging Face's transformers, OpenAI's ChatGPT API, and Anthropic's Claude
+    API. Such integrations allow our users to choose the best AI models suited
+    for their specific needs, ensuring versatility and adaptability.
+
+![A demonstration of self-reported preference feedback UI in Cogment Converse](/content/2024-04-19-training-llms-to-reason/cogment-converse-preferences.gif)
+
+_This demonstration showcases a conversation involving one user and two
+assistants the user can pick their preferred answer. This type of self-reported
+feedback collaboration pattern is very useful during the fine tuning phase._
+
+The goal is to create a more intuitive, responsive, and effective system that
+respects and utilizes human feedback to enhance both user experience and AI
+performance.
+
+## Instruction Following & Human alignment
+
+Fine tuning LLMs to follow instructions accurately and align with human
+expectations is fundamental to the development of reliable AI systems, it is the
+next piece in our puzzle. Techniques such as Instruction Fine Tuning (IFT),
+Reinforcement Learning from Human Feedback (RLHF) and Direct Preferences
+Optimization (DPO) have marked significant strides in this domain.
+
+Nevertheless, there remains ample room for improvement, especially in
+streamlining processes to tailor open-source LLMs to specific business needs.
+Companies can benefit greatly from customizing these models to understand and
+interact within the nuanced contexts of their particular industries. Cogment
+tackles this need by enabling enterprises to harness the expertise of their
+in-house specialists effectively.
+
+1.  **Interaction Data Management:** We provide a unified format for interaction
+    data that is versatile enough to support virtually any fine-tuning process.
+2.  **Active Fine-Tuning Campaign Management:** By managing active fine-tuning
+    campaigns, we can help reduce both the volume and the cost of collecting
+    interaction data necessary for fine-tuning by ensuring the users provide
+    feedback that are targeted at the “need” of the in-training model.
+3.  **Model Validation:** We include a dual approach to validation techniques
+    combining traditional metrics with human-in-the-loop evaluations ensuring
+    that the models not only perform well statistically but also meet the
+    practical expectations and standards set by human evaluators.
+4.  **Integration Capabilities:** Our platform aims at supporting seamlessly
+    with any fine tuning tools to leverage the latest progress in the field. We
+    currently directly support
+    [Hugging Face TRL (Transformers Reinforcement Learning)](https://github.com/huggingface/trl).
+
+To delve deeper into that project, we will soon be publishing an article
+describing this project’s architecture and results.
+
+## Tooling LLM to explore strategies and evaluate their impact
+
+Connecting LLMs to external tools, in particular to digital twins, is the third
+piece of the puzzle. What is called **tooling** is a four step process:
+
+1.  **Tool description**: Initially, the prompt includes detailed instructions
+    about the available tools and the expected inputs for these tools. We can
+    expose Cogment [generic APIs](https://cogment.ai/docs/reference/grpc) to act
+    in any environment or to run trials.
+2.  **Structured responses**: The LLM is prompted to generate structured
+    responses that clearly indicate the tool to be used. An example of such a
+    prompt can be seen in
+    [LangChain’s structured response parser example](https://python.langchain.com/docs/modules/model_io/output_parsers/types/structured/),
+    which structures the output in a specific JSON format to include both the
+    answer and the source URL.
+
+The output should be a markdown code snippet formatted in the following schema,
+including the leading and trailing "\`\`\`json" and "\`\`\`":
+
+```json
+{
+  "answer": string // answer to the user's question
+  "source": string // source used to answer the user's question, should be a website (i.e. a URL address).
+}
+```
+
+3.  **Execution, Parsing and Orchestration:** Once the full prompt is assembled,
+    it can be executed and the LLM’s response be parsed. The system then
+    orchestrates the specified tools calls, such as running a Cogment trial or
+    adjusting parameters in an ongoing trial.
+4.  **Post-processing and Recursion:** The output is post-processed into either
+    natural language or simple structured data, and then fed back into the
+    system as context for further queries. This cycle continues until no further
+    tool calls are required, or a direct answer is requested by the system.
+    While high level APIs like the OpenAI API
+    [provides tooling out of the box](https://platform.openai.com/docs/guides/function-calling),
+    on other LLMs, those steps require some tinkering to assemble the right
+    prompts, that’s definitely something that can be improved by better LLM or
+    by fine tuning them to better use the tools, this is a topic that is covered
+    in the next section.
+
+![A demonstration of conversational "what-if" in Cogment GAIA](/content/2024-04-19-training-llms-to-reason/cogment-gaia-conversational-whatif.gif)
+
+_In this demonstration inside our_ **_“Cogment Green AI Apprentice”_** _product,
+the user wants to test different battery setups in their solar power plant, the
+assistant explores a few alternatives using the underlying digital twin and
+power management optimization agent and returns high level analysis. The user
+can then dive deeper into the results using the analytics dashboard._
+
+Tooling gives a significant improvement to the whole system's ability to keep
+track of dynamic environments, early results in our blocksworld experiment show
+an increase of precision from **34%**, without tooling, to **87%** on legal
+moves and from **75%** to **80%** on illegal moves for GPT3.5. Experiments on
+GPT4 are still ongoing. The fact that results are not perfect, while the
+underlying model of the environment is, shows that there’s a margin for
+improvement still.
+
+Tooling requires the LLM to go from the natural language to structured calls,
+thus it relies on the LLM’s understanding of the domain. To mitigate this
+limitation we’ve explored training the underlying AI agent to take natural
+language queries directly as parameters.
+[The GLIDE-RL algorithm](/blog/glide-rl-grounded-language-instruction-through-demonstration-in-rl)
+shows great results in that direction, it will be presented at the upcoming
+[AAMAS conference](https://www.aamas2024-conference.auckland.ac.nz/). Despite
+these advancements, the effectiveness of LLM tooling hinges on the model's
+understanding of the environment. This includes making accurate decisions about
+the format, applicability, and optimality of actions - ideally minimizing the
+exploration of non-viable options. Therefore, grounding the LLM in a
+well-defined context is essential, this is the last piece of our puzzle.
+
+## Grounding LLM to understand environment affordances
+
+The process of grounding LLMs to comprehend environmental affordances is a
+sophisticated extension of earlier methods primarily focused on aligning outputs
+according to an external source of feedback, usually humans. These algorithms,
+in particular RLHF, show great practical results, grounding builds upon them for
+tasks, and environment-specific tuning.
+
+Recent research, such as
+["Grounding Large Language Models in Interactive Environments with Online Reinforcement Learning"](https://arxiv.org/abs/2302.02662)
+has begun exploring how fine-tuning LLMs can allow them to function as
+decision-making policies within various environments. This research, however,
+did not focus on enhancing the LLM’s ability in areas like question answering or
+tool usage, which are crucial for broader application.
+
+Our approach, currently in R&D, involves fine-tuning LLMs within environments
+modeled by Markov Decision Processes (MDP), with the objective of refining the
+LLM’s capacity to deliver solutions or perform actions that align with given
+goals. Here's a concise overview of our methodology:
+
+1.  **Goal Setting:** A human or automated system defines a high-level goal for
+    the environment, such as "Solve this maze."
+2.  **Information Gathering:** The LLM gathers descriptions of the environment
+    in natural language. For example, it might process information like the
+    positions of various objects and the user's location within a maze,
+    alongside the defined task.
+3.  **Decision Making:** Based on this information, the LLM suggests strategic,
+    high-level actions—for instance, directing the agent to navigate to a
+    specific object or use a key to open a door.
+4.  **Action Implementation:** An agent then executes these suggested actions
+    within the environment, navigating through the maze or interacting with
+    elements as directed.
+5.  **Feedback Reception:** The environment provides feedback in the form of
+    rewards based on the effectiveness of the actions performed by the agent.
+6.  **Iterative Learning:** The LLM fine-tunes its strategies based on the
+    reward feedback, adjusting its approach to optimize outcomes.
+
+This cycle is repeated, refining the LLM's actions until the initial goal is
+achieved. Upon completion, the process resets with a new goal, continuously
+improving the LLM’s understanding and operational efficiency within the
+environment.
+
+While this approach is still under development, we are optimistic about its
+potential to significantly enhance the results of our earlier tooling efforts,
+leading to more precise and contextually-appropriate responses from the LLM in a
+variety of settings.
+
+## Conclusion
+
+The integration of orchestration, tooling, and both alignment and grounding
+fine-tuning forms the foundation of trustworthy natural language interactions
+with large language models. Thanks to its existing capabilities and our ongoing
+research and development, Cogment emerges as a promising platform capable of
+fostering robust and reliable natural language interactions between humans and
+AI.
+
+Trustworthy natural language interactions find practical applications across a
+broad range of industries, where dynamic decision-making and complex system
+adjustments may be crucial. For example, in manufacturing, a user might inquire
+about the implications of changing the parameters of a given machine to prepare
+maintenance or when is the best time to do a 2h maintenance window. This allows
+for predictive adjustments and proactive planning. In embedded software, such a
+system could help assess whether a program might exceed the hardware
+capabilities, and suggest modifications to avoid failures before testing on
+costly setup.
+
+Beyond these decision support use cases, such a system could enable providing
+additional guidance to AI agents performing a task, for example a robot on the
+field, or facilitate coordination between AI agents and human peers. The
+applications are numerous By harnessing natural language communication, we
+unlock new dimensions of interaction that are crucial for advanced human-AI
+collaboration, that is complementary to existing, structured, modalities of
+interaction. This approach not only makes AI more accessible and easier to
+integrate into complex workflows but also enhances the efficiency and
+effectiveness of these systems. Ultimately, the continual refinement of these
+interactions promises to not only meet but exceed the evolving needs of
+industries, paving the way for more efficient and human-centric tools.
