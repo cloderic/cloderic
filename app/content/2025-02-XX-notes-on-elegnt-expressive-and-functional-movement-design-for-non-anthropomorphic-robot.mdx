@@ -1,0 +1,74 @@
+---
+title:
+  'Notes on: "ELEGNT: Expressive and Functional Movement Design for
+  Non-Anthropomorphic Robot"'
+description:
+  'Reading notes on "ELEGNT: Expressive and Functional Movement Design for
+  Non-Anthropomorphic Robot" by Yuhan Hu, Peide Huang, Mouli Sivapurapu, Jian
+  Zhang from Apple'
+date: 2025-02-XX
+categories:
+  - notes
+  - highlights
+cover: /content/2025-02-10-notes-on-fully-autonomous-ai-agents-should-not-be-developed/fully-autonomous-ai-agents-should-not-be-developed.png
+---
+
+## Reference
+
+- **Title**: ELEGNT: Expressive and Functional Movement Design for
+  Non-Anthropomorphic Robot
+- **Authors**: Yuhan Hu, Peide Huang, Mouli Sivapurapu, Jian Zhang
+- **Affiliation**: Apple
+- **Links**:
+  - [Blog Post](https://machinelearning.apple.com/research/elegnt-expressive-functional-movement),
+  - [arXiv preprint](http://arxiv.org/abs/2502.02649v2)
+
+## Summary
+
+## Reading notes
+
+- Looks at nonverbal behaviors needed for interactions with humans and how
+  non-anthropomorphic robots could integrate those expressive qualities. It's
+  about affordances, interactio, cues, etc...
+  > While much of the research separates pragmatic robotics—such as robotic arms
+  > performing household tasks—from social robotics, like therapeutic robots
+  > providing emotional support, we argue that any robot interacting with
+  > humans, even if designed primarily for practical functions, embodies social
+  > value and should have its design and behaviors shaped accordingly.
+- Hardware + software + storyboards of interactions
+- Focuses on design + user studies to get insight on what matters, not on
+  movement generation & co.
+- Lamp form primary inspiration is - of course - Luxo Jr.
+  - They also consider the alignment between form and users expectactions (eg
+    humanoid robots might lead to the expectation of supporting more social
+    engagment)
+  - "Heider-Simmel Illusion" demosntrates that humans ca project character and
+    metaphorical states on moving objects even it they are simple geometric
+    shapes it they seem to move on their own accord - ie autonomously (cf.
+    wizard of oz effect).
+- Formulation -> MDP with a reward function decomposed in two parts: functional
+  utility and expressive utility.
+  - Expressive utility aims at commucationg the robots the robots traits, state
+    and intents. The capture 4 dimensions:
+    - **intention** -> ability for the user to anticipate actions / movements.
+    - **attention** -> ability for the user to understand where is the focus of
+      the robot.
+    - **attitude** -> stance towards a person, object or event: expressing
+      agreement, confidence, ...
+    - **emotion** -> THIS IS NOT ABOUT ACTUAL EMOTION but they argue it is
+      needed to simulate emotional expressions to create intuitive and engagine
+      interactions.
+- Building blocks: movement primitives
+  - Kinesics -> body movements
+  - Proxemics -> Management of spatial distance in relation to the environment
+- Experiments follow 6 scenarios
+  - Really like their classification reactive / proactive and functional /
+    social
+
+TO BE CONTINUED (AT SECTION 4)
+
+## Final Thoughts
+
+- **Strengths**:
+- **Limitations**:
+- **Odds and ends**:
