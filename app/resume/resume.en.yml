@@ -1,14 +1,19 @@
 page_title: Clodéric Mars - Resume
 name: Clodéric Mars
-job_title: AI Product Engineer & Tech Leader
+job_title: AI Engineer & Tech Leader
 contact:
   address: Montréal, Canada
   linkedIn: https://www.linkedin.com/in/cloderic
 intro: |
-  I specialize in **human-AI collaboration**, with one hand in leadership and the other in development. The products I built have:
-    - empowered artists to **direct autonomous characters** in movies,
-    - enabled engineers **optimize energy & transportation infrastructures**, and
-    - assisted instructors in delivering **personalized training simulations**.
+  I design and build **decision-making AIs that balance automation and human oversight**. With experience spanning leadership and hands-on engineering, I’ve:
+
+  - Developed human-AI collaborative systems across creative, industrial, and operational domains.
+  - Scaled teams and products from prototypes to enterprise-grade solutions, generating significant recurring revenues.
+  - Transferred cutting-edge AI research (reinforcement learning, explainable AI, and time series modeling) into real-world deployments.
+
+  At the intersection of AI engineering, technical leadership, and product innovation, I transform complex ideas into impactful technology.
+  Whether leading teams, architecting scalable AI systems, or driving business-aligned R&D, I thrive in multidisciplinary environments that push
+  the boundaries of AI in augmenting human capabilities.
 key_skills:
   - Applied Artificial Intelligence
   - Technical leadership
@@ -37,9 +42,9 @@ experiences:
         - Led the design and training of decision-making AI agents collaborating with humans, leveraging deep reinforcement learning, large language models, and symbolic AI. Applied evidence-based, data-driven methodologies to solve complex real-world problems, enabling successful AI product deployments and contributing to 9 peer-reviewed publications and 3 patents.
         - Managed collaborations across industries including aerospace and defense (e.g. [Thales](https://www.thalesgroup.com/), [CAE](https://www.cae.com/), and [NAV CANADA](https://www.navcanada.ca/)) ; energy (e.g. [RTE](https://www.rte-france.com/)) ; manufacturing (e.g. [Renault](https://www.renaultgroup.com/)) ; and academia (e.g. the [University of Alberta](https://www.ualberta.ca/), [MILA](https://mila.quebec/), and [IRT SystemX](https://www.irt-systemx.fr/)).
       skills:
-        - Reinforcement learning
+        - Reinforcement learning (RL)
         - Deep learning
-        - Large Language Models
+        - Large Language Models (LLM)
         - Simulation
         - Python
         - Go
