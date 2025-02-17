@@ -1,14 +1,19 @@
 page_title: Clodéric Mars - CV
 name: Clodéric Mars
-job_title: Ingénieur produit IA et tech leader
+job_title: Ingénieur IA et tech leader
 contact:
   address: Montréal, Canada
   linkedIn: https://www.linkedin.com/in/cloderic
 intro: |
-  Je suis spécialisé dans la **collaboration entre humains et IAs**, avec une main dans le leadership et l’autre dans le développement. Les produits que j'ai développés ont :
-    - permis à des artistes de diriger des **personnages autonomes** dans des films,
-    - aidé des ingénieurs à **optimiser des infrastructures de transport & d'énergie**, et
-    - assisté des instructeurs à mettre en oeuvre des **simulations de formation personnalisées**.
+  Je conçois et construit des **IAs décisionnelles qui équilibrent automatisation et supervision humaine**. Fort d’une expérience combinant leadership et expertise technique, j’ai :
+
+  -	Développé des systèmes collaboratifs humain-IA dans des contextes créatifs, industriels et opérationnels.
+  - Fait évoluer des équipes et des produits du prototype à des solutions de niveau entreprise, générant des revenus récurrents à grande échelle.
+  - Transféré des avancées de recherche en IA (apprentissage par renforcement, IA explicable, modélisation de séries temporelles) vers des déploiements industriels.
+
+  À l’intersection de l’ingénierie de l’IA, du leadership technique et de l’innovation produit, je transforme des idées complexes en technologies adaptées aux besoins réels.
+  Que ce soit pour diriger des équipes, concevoir des systèmes d’IA évolutifs ou piloter une R&D alignée sur les enjeux métier, j’évolue dans des environnements
+  multidisciplinaires qui repoussent les limites de l’IA pour augmenter les capacités humaines.
 key_skills:
   - Intelligence artificielle appliquée
   - Leadership technique
