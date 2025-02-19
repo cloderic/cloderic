@@ -1,0 +1,225 @@
+---
+title:
+  'Notes on: "ELEGNT: Expressive and Functional Movement Design for
+  Non-Anthropomorphic Robot"'
+description:
+  'Reading notes on "ELEGNT: Expressive and Functional Movement Design for
+  Non-Anthropomorphic Robot" by Yuhan Hu, Peide Huang, Mouli Sivapurapu, Jian
+  Zhang from Apple'
+date: 2025-02-19
+categories:
+  - notes
+  - highlights
+cover: /content/2025-02-19-notes-on-elegnt-expressive-and-functional-movement-design-for-non-anthropomorphic-robot/elegnt-expressive-and-functional-movement-design-for-non-anthropomorphic-robot.png
+---
+
+## Reference
+
+- **Title**: ELEGNT: Expressive and Functional Movement Design for
+  Non-Anthropomorphic Robot
+- **Authors**: Yuhan Hu, Peide Huang, Mouli Sivapurapu, Jian Zhang
+- **Affiliation**: Apple
+- **Links**:
+  - [Blog Post](https://machinelearning.apple.com/research/elegnt-expressive-functional-movement),
+  - [arXiv preprint](https://arxiv.org/abs/2501.12493).
+
+## Summary
+
+If your social feeds are anything like mine, you've probably seen those videos
+last week of a [Luxo Jr.](https://en.wikipedia.org/wiki/Luxo_Jr.) inspired lamp
+interacting with a human, they come from this recent paper from Apple.
+
+<YouTube videoId="MRCb2QE1QM4" />
+
+Although it provides some insights into implementing autonomous policies for
+‘expressive and functional movements,’ the paper mainly focuses on:
+
+- defining a **framework** for robot expressiveness in relation to its function,
+- a user study that shows the impact of such expressiveness.
+
+I hope we get more paper like this and that, in turn, they are used to set
+targets for human-machine collaboration in more implementation-oriented work!
+
+**TLDR:** you won't learn how to implement what you see but you'll get new tools
+to design, describe and evaluate your (or anyone else's) future implementations.
+
+Let's get into it.
+
+## Reading notes
+
+### Scope
+
+- An interesting focus of the paper is its emphasis on non-anthropomorphism.
+  They argue that non-anthropomorphic robots are usually seen as "utilitarian"
+  but they also interact with humans.
+  > While much of the research separates pragmatic robotics—such as robotic arms
+  > performing household tasks—from social robotics, like therapeutic robots
+  > providing emotional support, we argue that any robot interacting with
+  > humans, even if designed primarily for practical functions, embodies social
+  > value and should have its design and behaviors shaped accordingly.
+- They are particularly interested in nonverbal behaviors needed for
+  interactions with humans and how non-anthropomorphic robots could integrate
+  those expressive qualities that are usually associated with humanoid entities.
+- A significant base for this work is the **"Heider-Simmel Illusion"** from the
+  1944 paper
+  ["An Experimental Study of Apparent Behavior"](https://training.incf.org/sites/default/files/2023-05/An%20Experimental%20Study%20of%20Apparent%20Behavior.pdf)
+  where participants in the study were presented with a
+  [very stylized animation of a few geometric shapes](https://www.youtube.com/watch?v=8FIEZXMUM2I)
+  and attributed human-like qualities to them. We can also think of a lot of
+  fiction work, like the primary inspiration for this paper: Pixar's Luxo Jr.
+  Those basically show that humans can map human-qualities (character, purpose)
+  to non-human entities.
+- One caveat to this, that they indeed mention, is that there might be an
+  alignment between form and user expectations, with humanoid robots being
+  expected to support more social engagement.
+- I find the premise fascinating; I've worked on AI systems in simulation, games
+  and movies where **"smoke and mirrors"** are the norm. We aim at creating the
+  ["illusion of life"](https://en.wikipedia.org/wiki/Disney_Animation%3A_The_Illusion_of_Life)
+  for the sake of engagement, immersion and storytelling. However I'm decidely
+  not a fan of projecting human-like quality to machines. **There's a very fine
+  line between making a technology more accessible or transparent through better
+  affordances or interaction cues and manipulating users through emotional
+  responses to elicit more consumption or get more control on the outcome of the
+  collaborative task**. That's a challenge addressed in fiction work: are Droid
+  characters in Star Wars pets? tools? peers? How should we react to C-3PO
+  memory being wiped-out in Revenge of the Sith? Did they just killed their
+  friend because it was inconvenient for it (him?) to have that much
+  information? We digress a little, but that's interesting to consider **WHY
+  would we want a machine to "feel" more human**.
+
+### Formulation
+
+- The authors propose a formal framework for what they try to achieve: combining
+  achieving the task with maximal efficiency with what they call "expressive"
+  utility.
+- Both aspects are combined in a Markov Decision Process (MDP) with a reward
+  function decomposed in two parts: functional utility and expressive utility.
+- Expressive utility aims at communicating the robot’s traits, state and intents
+  to its user. They argue it should capture 4 dimensions:
+  - **intention**: ability for the user to anticipate actions / movements.
+  - **attention**: ability for the user to understand where is the focus of the
+    robot.
+  - **attitude**: stance towards a person, object or event: expressing
+    agreement, confidence, ...
+  - **emotion**: they clearly state that this is not about actual emotion but
+    they argue it is needed to simulate emotional expressions to create
+    intuitive and engaging interactions.
+- Given the scope of the paper, they don’t go into detail about how these
+  dimensions would be quantitatively measured.
+
+### Movement building blocks
+
+- An interesting aspects of this work is that the movements of the robot are not
+  generated by a planning algorithm but authored by animators. They created a
+  series of building blocks that can be combined to created expressive movements
+
+<NextImage
+  src="/content/2025-02-19-notes-on-elegnt-expressive-and-functional-movement-design-for-non-anthropomorphic-robot/elegnt-kinesics-proxemics-building-blocks.png"
+  title="ELEGNT Building Blocks"
+  width={720}
+  height={598}
+/>
+
+- They differ between two types of movement primitives: **kinesics**, ie body
+  movements, and **proxemics**, ie movements in relation to the environment,
+  especially objects of interest.
+
+- While this "manual" authoring of movement is a function of the nature of the
+  experiments they aim at conducting, I'd argue that this could be used in a
+  generative system too. This is how a lot of animation in computer graphics are
+  handled, an animator creates base motions that are stitched together and
+  deformed to follow autonomously generated trajectory, this ensures a high
+  degree of control on the style / personality of the animation.
+
+### Experiments
+
+![ELEGNT Tasks Classification](/content/2025-02-19-notes-on-elegnt-expressive-and-functional-movement-design-for-non-anthropomorphic-robot/elegnt-tasks-classification.png)
+
+- To get a good coverage on different types of tasks, the authors select 6 tasks
+  spread out over 2 classifying axises:
+  - reactive vs proactive: ie does the robot react to a user query or does it
+    initiate the interaction,
+  - function vs social: ie does the robot perform a task that position it like a
+    pure tool or more like a pet or friend.
+- They want to address 2 research questions in their study: **do users care
+  about the expressivity?** **does it depends on the task?** Their hypotheses
+  being that yes user care (shocking) and that this expressivity is favored on
+  more social tasks.
+- Users are presented with 2 videos for each of the selected tasks (the one
+  above) where the robot perform task with and without expressive utility.
+- They then ask users to rate the robot performance over 6 dimensions:
+  - human-likeliness
+  - perceived intelligence
+  - perceived emotion/character
+  - interaction engagement
+  - the sense of connection
+  - willingness to use the robot
+- Their quantitative results are supporting the hypotheses, which is to be
+  expected. Their qualitative results are interesting too:
+  - Expressive robots seem to get better at having users inferencing the robot
+    state but users also map intentions / state to the functional robot.
+  - Noting the balance between expressivity and efficiency "stick to only the
+    task relevant motion which is angle and the light"
+  - Also interesting (predicable, but interesting) "many participants were less
+    accept- able to robot taking proactive roles than reactive roles"
+  - But playfullness could increase the acceptance of robot behavior "Without
+    the playfulness, I might find this type of interaction with a robot annoying
+    rather than welcome and engaging."
+- The videos are "acted": the robot follows a prerecorded trajectory but the
+  human is also acting. Given that the robot is just following a prerecorded
+  script, the user had to synchronize their performance with the robot, they
+  probably rehearsed and filmed multiple takes. This means that they're a
+  perception bias induced by the human performance. I'm not sure it's avoidable
+  unless the robot actually works and can interact with the participants but I
+  think it should be addressed and maybe balanced out by having multiple version
+  of that interactions showed to the participant (this would require more
+  participant to get something statistically sound though).
+- I'm not the biggest fan on how they treated the results on the different
+  evaluation dimensions. As discussed in a
+  [previous note](/content/2025-02-10-notes-on-fully-autonomous-ai-agents-should-not-be-developed)
+  I don't think "human-likeliness" is a measure of quality of anything (except
+  if your goal is to have human-like behavior, duh) but more a way to achieve
+  something. I think most of the other dimensiosn are similar, the only one that
+  truly support the hypotheses is, IMO, "willingness to use the robot", the
+  others are interesting to correlate to this willingness: e.g. is
+  "human-likeliness" more or less correlated to that willingness than, say, the
+  appearance of a connection between the user and the robot?. Moreover, the
+  dimensions are really skewed towards expression and not really functionnality
+  it would have been interesting to capture how people were perceiving utility
+  or efficiency. This is adressed in the future work section that "should
+  balance the trade-off between task efficiency and characterfulness in human-
+  robot interaction", I 100% agree but I'm not sure why it wasn't done here with
+  a few additional dimensions.
+
+## Final Thoughts
+
+- **Strengths**:
+  - The paper introduces a solid framework for integrating expressive and
+    functional movement in non-anthropomorphic robots, making a strong case that
+    expressiveness isn’t just a “nice to have” but plays a crucial role in
+    human-robot interaction.
+  - The study design is well-structured, covering a variety of task types
+    (functional vs. social, proactive vs. reactive), a classification that I
+    find particularly insightful.
+  - The experimental results confirm what we might intuitively expect: people
+    care about expressiveness, especially in social interactions. Seeing it
+    quantified is useful.
+- **Limitations**:
+  - The user study relies on pre-recorded videos where the human actor
+    synchronizes their actions with the robot. This means user reactions might
+    be influenced by human performance rather than just the robot’s movements.
+  - The evaluation metrics skew towards expressiveness. The paper does not
+    directly measure perceived efficiency or task success, which would have been
+    useful for balancing trade-offs between expressiveness and function.
+- **Odds and ends**:
+  - One of the most interesting takeaways is the subtle tension between designed
+    expressiveness vs. emergent human perception. Even when the robot only had
+    function-driven movements, users still attributed intentions and
+    emotions—which reinforces that, sometimes, humans will “see” expressiveness
+    even if it isn’t explicitly designed.
+  - The way the Pixar-inspired animation principles were applied here is
+    particularly refreshing for a robotics paper. It’s easy to see how a similar
+    approach could be used to fine-tune expressiveness in many robotics
+    applications, from industrial robots giving clearer affordances to
+    autonomous vehicles signaling intent more naturally. I can't wait for _Flash
+    McQueen_-style expressive displays on windshields everywhere!
