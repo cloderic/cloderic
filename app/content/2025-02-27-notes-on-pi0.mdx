@@ -61,7 +61,12 @@ from **100s to multiple minutes**.
 
 ### π0 Model Architecture
 
-![π0 high level architecture](/public/content/2025-02-27-notes-on-pi0/pi0-model-architecture.png)
+<NextImage
+  src="/content/2025-02-27-notes-on-pi0/pi0-model-architecture.png"
+  title="π0 high level architecture"
+  width={1079}
+  height={311}
+/>
 
 - One Transformer, Two Expert Weight Sets:
   - **VLM (Vision-Language Model)** for images + prompt (3B params,
@@ -118,46 +123,45 @@ from **100s to multiple minutes**.
 
 ### Evaluations
 
-#### 1. Pretraining Performance
+- **1. Pretraining Performance**
 
-- Compared against **OpenVLA** (\~7B VLA, trained on OXE) and **Octo** (93M,
-  diffusion-based).
-- **4 Seen Tasks**: Folding shirt, bussing table, bagging groceries, removing
-  toast.
-- **Metric**: Avg. normalized score over **10 episodes** (1.0 = full task
-  completion).
-- **➡️ π0 outperforms all baselines**, even with the same number of training
-  steps.
+  - Compared against **OpenVLA** (\~7B VLA, trained on OXE) and **Octo** (93M,
+    diffusion-based).
+  - **4 Seen Tasks**: Folding shirt, bussing table, bagging groceries, removing
+    toast.
+  - **Metric**: Avg. normalized score over **10 episodes** (1.0 = full task
+    completion).
+  - **➡️ π0 outperforms all baselines**, even with the same number of training
+    steps.
 
-#### 2. Language Command Following
+- **2. Language Command Following**
 
-- Compared against **π0-small** (470M params, no VLM, similar architecture).
-  - Uses **DistilBERT for language** + **ViT for images**.
-  - **Action expert can't attend to raw vision/language tokens**, only processed
-    embeddings.
-- **3 Instruction Types**:
-  - **Flat** → Only high-level task instruction ("set the table").
-  - **Human** → Step-by-step instructions (\~2s segments, human-annotated).
-  - **HL (High-Level VLM)** → VLM-generated intermediate instructions (only
-    tested associated with π0)
-- **➡️ π0 beats π0-small**, especially with **low-level instructions**.
+  - Compared against **π0-small** (470M params, no VLM, similar architecture).
+    - Uses **DistilBERT for language** + **ViT for images**.
+    - **Action expert can't attend to raw vision/language tokens**, only
+      processed embeddings.
+  - 3 Instruction Types:
+    - **Flat** → Only high-level task instruction ("set the table").
+    - **Human** → Step-by-step instructions (\~2s segments, human-annotated).
+    - **HL (High-Level VLM)** → VLM-generated intermediate instructions (only
+      tested associated with π0)
+  - **➡️ π0 beats π0-small**, especially with **low-level instructions**.
 
-#### 3. Fine-tuning for Dexterous Tasks
+- **3. Fine-tuning for Dexterous Tasks**
 
-- **Compared settings**:
-  - **Pretrained π0**, fine-tuned with **1h to 10h of task-specific data**.
-  - **Training from scratch** on task data.
-- **Compared models**: π0 vs. OpenVLA, Octo, ACT, Diffusion Policy.
-- ➡️ π0 **outperforms all**; suprisingly, pretraining provides moderate gains vs
-  training from scratch.
+  - **Compared settings**:
+    - **Pretrained π0**, fine-tuned with **1h to 10h of task-specific data**.
+    - **Training from scratch** on task data.
+  - **Compared models**: π0 vs. OpenVLA, Octo, ACT, Diffusion Policy.
+  - ➡️ π0 **outperforms all**; suprisingly, pretraining provides moderate gains
+    vs training from scratch.
 
-#### 4. Multi-Stage Task Adaptation
+- **4. Multi-Stage Task Adaptation**
 
-- **5–20 minute tasks**, requiring **high-level planning** + **fine-grained
-  control**.
-- Compare settings: only pretrained, fine-tuned & trained from scratch
-- **➡️ Best results come from the fine tuned models** **Fine-tuning + high-level
-  instructions**.
+  - **5–20 minute tasks**, requiring **high-level planning** + **fine-grained
+    control**.
+  - Compare settings: only pretrained, fine-tuned & trained from scratch
+  - ➡️ Best results come from the fine tuned models.
 
 ## Final Thoughts
 
@@ -179,6 +183,6 @@ from **100s to multiple minutes**.
     are not not tested on π0-small**, could be worth investigating as a
     compensatory mechanism for the model not benefiting from the VLM training.
   - π0-small is somewhat similar in terms of approach to what we did at AIR with
-    [GLIDE-RL]\([https://arxiv.org/abs/2401.02991](https://arxiv.org/abs/2401.02991)).
-    We didn’t have the vision part but the way the natural language instructions
-    are added to the policy is similar.
+    [GLIDE-RL](https://arxiv.org/abs/2401.02991). We didn’t have the vision part
+    but the way the natural language instructions are added to the policy is
+    similar.
