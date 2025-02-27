@@ -1,0 +1,188 @@
+---
+title:
+  'Notes on: "π0: A Vision-Language-Action Flow Model for General Robot Control"'
+description:
+  'Reading notes on "π0: A Vision-Language-Action Flow Model for General Robot
+  Control" by Authors from Physical Intelligence'
+date: 2025-02-27
+categories:
+  - notes
+  - highlights
+cover: /content/2025-02-27-notes-on-pi0/pi0-a-vision-language-action-flow-model-for-general-robot-control-cover.png
+---
+
+## Reference
+
+- **Title**: π0: A Vision-Language-Action Flow Model for General Robot Control
+- **Authors**: Kevin Black, Noah Brown, Danny Driess, Adnan Esmail, Michael
+  Equi, Chelsea Finn, Niccolo Fusai, Lachy Groom, Karol Hausman, Brian Ichter,
+  Szymon Jakubczak, Tim Jones, Liyiming Ke, Sergey Levine, Adrian Li-Bell,
+  Mohith Mothukuri, Suraj Nair, Karl Pertsch, Lucy Xiaoyang Shi, James Tanner,
+  Quan Vuong, Anna Walling, Haohuan Wang, Ury Zhilinsky.
+- **Affiliation**:
+  [Physical Intelligence](https://www.physicalintelligence.company)
+- **Links**:
+  - [Blog Post](https://www.physicalintelligence.company/blog/pi0)
+  - [arXiv preprint](https://arxiv.org/abs/2410.24164)
+
+## Summary
+
+Physical Intelligence (Pi, or π) is a robotics startup co-founded in early 2024
+by [**Sergey Levine**](https://people.eecs.berkeley.edu/~svlevine/) and others
+from academia and industry. The company raised a **\$70M seed round**, followed
+by **\$400M more in late 2024**, reaching a **\$2B valuation**. Their goal:
+build a **general AI brain** for robots, similar to foundation models in
+language but applied to real-world physical tasks.
+
+**π0** is their **flagship model**, designed for **zero-shot generalization**,
+fine-tuning for specific tasks, and **real-time control up to 50Hz**. It tackles
+dexterous, multi-step tasks (e.g., **laundry folding**), with durations ranging
+from **100s to multiple minutes**.
+
+## Reading Notes
+
+### Training Recipe
+
+#### Pretraining Phase
+
+- Goal: Train a **generalist base model** that follows **language commands**
+  with basic proficiency.
+- Dataset: **Pretraining mixture** (diverse data → better robustness).
+  - **Own dataset**: **903M timesteps** (\~10,000 hours of robot experience).
+  - **Open-source datasets**: **90M timesteps**
+    from: [OXE](https://robotics-transformer-x.github.io), [BridgeData v2](https://rail-berkeley.github.io/bridgedata/) & [Droid](https://droid-dataset.github.io).
+
+#### Post-Training Phase
+
+- Goal: Improve task execution efficiency and support more complex tasks using
+  _smallish_ datasets - the evaluation uses between 1 to 10 hours of data per
+  tasks.
+- Focus: **Harder, longer-horizon tasks** requiring **more precise actions**.
+
+### π0 Model Architecture
+
+<NextImage
+  src="/content/2025-02-27-notes-on-pi0/pi0-model-architecture.png"
+  title="π0 high level architecture"
+  width={1079}
+  height={311}
+/>
+
+- One Transformer, Two Expert Weight Sets:
+  - **VLM (Vision-Language Model)** for images + prompt (3B params,
+    **PaliGemma**).
+  - **Action Expert** for proprioception - the state of the robot - + action
+    chunks, ie plan of actions over the following timestemps (300M params, fewer
+    active weights).
+
+#### Vision-Language Model (VLM)
+
+- **Projects images and text into the same token space**.
+- **Supports up to 3 cameras per robot** (matching their own data, the open
+  source dataset have less so missing images are masked).
+
+#### Action Expert (Flow Matching for Actions)
+
+- **Why Flow Matching?** Traditional approaches discretize actions, limiting
+  expressivity. Flow matching provides a continuous representation that allows
+  smoother transitions.
+- **Training Process:** The model learns to "denoise" perturbed action sequences
+  where noise follows a shifted beta distribution —placing more emphasis on
+  earlier, noisier states.
+- **Inference Process:** Starts from Gaussian noise and refines the action
+  sequence iteratively over 10 steps, gradually aligning with an optimal
+  trajectory.
+- **Advantages:** Flow matching ensures smoother action predictions, making it
+  well-suited for high-frequency, real-time control tasks like dexterous
+  manipulation.
+- I wasn’t really familiar with flow matching, the following helped me get a
+  clearer
+  picture: [Flow Matching lecture material from Cambridge University](https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html),
+  [Flow-based Generative Models on Wikipedia](https://en.wikipedia.org/wiki/Flow-based_generative_model).
+
+#### Inference Time
+
+- **73ms on a GeForce RTX** for **3-camera input + 50-action chunk generation**.
+- Runs at **1s per decision for 50Hz robots**, **2.5s per decision for 20Hz
+  robots**.
+- Executes **first actions of each chunk until the next inference is ready**.
+
+### Token Sequence and Attention Structure
+
+- **Block 1**: Vision-Language Inputs
+  - **Images + language prompt**, processed by **VLM**. **Does not attend to
+    later blocks**.
+- **Block 2**: Proprioceptive State
+  - Encoded as a **fixed token** (cacheable).
+  - Dim = 18 matching the « largest »  robot: **6DOF arm, 2 grippers, mobile
+    base, torso actuator**.
+  - **Smaller robots = zero-padded inputs**.
+- **Block 3**: Noisy Action Chunk
+  - Starts as **Gaussian noise**, mapped via **MLP embedding**.
+  - **Refined via flow matching** to get to the final action sequence.
+
+### Evaluations
+
+- **1. Pretraining Performance**
+
+  - Compared against **OpenVLA** (\~7B VLA, trained on OXE) and **Octo** (93M,
+    diffusion-based).
+  - **4 Seen Tasks**: Folding shirt, bussing table, bagging groceries, removing
+    toast.
+  - **Metric**: Avg. normalized score over **10 episodes** (1.0 = full task
+    completion).
+  - **➡️ π0 outperforms all baselines**, even with the same number of training
+    steps.
+
+- **2. Language Command Following**
+
+  - Compared against **π0-small** (470M params, no VLM, similar architecture).
+    - Uses **DistilBERT for language** + **ViT for images**.
+    - **Action expert can't attend to raw vision/language tokens**, only
+      processed embeddings.
+  - 3 Instruction Types:
+    - **Flat** → Only high-level task instruction ("set the table").
+    - **Human** → Step-by-step instructions (\~2s segments, human-annotated).
+    - **HL (High-Level VLM)** → VLM-generated intermediate instructions (only
+      tested associated with π0)
+  - **➡️ π0 beats π0-small**, especially with **low-level instructions**.
+
+- **3. Fine-tuning for Dexterous Tasks**
+
+  - **Compared settings**:
+    - **Pretrained π0**, fine-tuned with **1h to 10h of task-specific data**.
+    - **Training from scratch** on task data.
+  - **Compared models**: π0 vs. OpenVLA, Octo, ACT, Diffusion Policy.
+  - ➡️ π0 **outperforms all**; suprisingly, pretraining provides moderate gains
+    vs training from scratch.
+
+- **4. Multi-Stage Task Adaptation**
+
+  - **5–20 minute tasks**, requiring **high-level planning** + **fine-grained
+    control**.
+  - Compare settings: only pretrained, fine-tuned & trained from scratch
+  - ➡️ Best results come from the fine tuned models.
+
+## Final Thoughts
+
+- **Strengths**:
+
+  - LLM-style approach to robotics proved to be workable: Pretrain on
+    "internet-scale" data, fine-tune on specific tasks.
+  - Clearly presented as a stepping stone, not an industrialized solution
+
+- **Limitations**:
+
+  - Proprietary dataset → No clear data collection methodology shared. -
+    Fine-tuning consists of more supervised learning some performance
+    optimization, e.g. using RL, would be interesting to introduce at this stage
+    (but would require a simulation probably).
+
+- **Odds and Ends**:
+  - **In the 2nd part of the evaluation, the high level instruction generations
+    are not not tested on π0-small**, could be worth investigating as a
+    compensatory mechanism for the model not benefiting from the VLM training.
+  - π0-small is somewhat similar in terms of approach to what we did at AIR with
+    [GLIDE-RL](https://arxiv.org/abs/2401.02991). We didn’t have the vision part
+    but the way the natural language instructions are added to the policy is
+    similar.
