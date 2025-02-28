@@ -19,6 +19,14 @@ export default async function Home() {
     categories.find((category) => category == 'highlights')
   );
   const sortedHighlights = sortBy(highlights, 'date').reverse();
+  const notes = (
+    await listContent({ parseFrontmatter: true })
+  ).filter(({ categories = [] }) =>
+    categories.find((category) => category == 'notes')
+  );
+  const sortedNotes = sortBy(notes, 'date')
+    .reverse()
+    .slice(0, 5);
 
   return (
     <div className="max-w-prose">
@@ -64,6 +72,8 @@ export default async function Home() {
       {welcomeMdx.content}
       <H2>Highlights</H2>
       <ContentList items={sortedHighlights} />
+      <H2>Latest paper reading notes</H2>
+      <ContentList items={sortedNotes} />
       <ul className="flex mt-8 justify-between">
         <li>
           <Link
