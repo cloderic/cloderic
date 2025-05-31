@@ -5,53 +5,55 @@ contact:
   address: Montréal, Canada
   linkedIn: https://www.linkedin.com/in/cloderic
 intro: |
-  I design and build **decision-making AIs that balance automation and human oversight**. With experience spanning leadership and hands-on engineering, I’ve:
-
-  - Developed human-AI collaborative systems across creative, industrial, and operational domains.
-  - Scaled teams and products from prototypes to enterprise-grade solutions, generating significant recurring revenues.
-  - Transferred cutting-edge AI research (reinforcement learning, explainable AI, and time series modeling) into real-world deployments.
-
-  At the intersection of AI engineering, technical leadership, and product innovation, I transform complex ideas into impactful technology.
-  Whether leading teams, architecting scalable AI systems, or driving business-aligned R&D, I thrive in multidisciplinary environments that push
-  the boundaries of AI in augmenting human capabilities.
+  ## Summary
+  I design and build **decision-making AIs that balance automation and human oversight**. With
+  experience spanning leadership and hands-on engineering, I’ve developed collaborative
+  human-AI systems across creative, industrial, and operational domains, scaled teams
+  and products to enterprise-grade maturity, and transferred advanced research into
+  real-world deployments.
+  I bridge research, engineering, and product to deliver real-world impact.
 key_skills:
-  - Applied Artificial Intelligence
-  - Technical leadership
-  - Software architecture
-  - Program management
-  - B2B presales & project management
-  - Technology transfer
-  - Distributed systems
-  - Cloud infrastructure
-  - MLOps
-  - Full-stack development
-  - Written and oral communication
-  - French (native)
-  - English (full professional proficiency)
+  - >
+    **Leadership & Strategy**: Program management, Research & development
+    project management, Technical presales & business development, Technology
+    transfer, Recruitment.
+  - >
+    **Artificial Intelligence**: Multi-agent systems, Reinforcement learning
+    (RL), Large Language Models (LLM), Explainable AI, Game AI.
+  - >
+    **Software Engineering & Infrastructure**: Software architecture,
+    Distributed systems, Cloud infrastructure, MLOps, Python, Go, C++, Rust,
+    Javascript, Kubernetes, Kafka, AWS, Azure.
+  - >
+    **Spatial Computing**: Simulation, Computational geometry, Geographic
+    information systems (GIS).
+  - >
+    **Communication**: Public speaking, Technical writing, French (native),
+    English (full professional proficiency).
 
 experiences:
   title: Experiences
   items:
-    - from: 2021-02
+    - from: 2025-04
       location: Montréal, Canada
       title: >
-        VP of Engineering - [**AI Redefined**](https://www.ai-r.com)
+        Principal AI/ML Platform Architect - [**CM Labs
+        Simulations**](https://www.cm-labs.com)
       description: |
-        - Hired and directed a distributed team of 16 engineers and researchers, achieving 40% annual growth. Introduced OKR- and Agile-inspired tools and processes for priority alignment, resource allocation, and feedback, supporting business objectives while fostering a culture of empowerment and collaboration.
-        - Transitioned the team’s focus from technological prototypes to enterprise AI products, adopting an open-core SaaS approach that generated ~$1.5M ARR.
-        - Led the design and training of decision-making AI agents collaborating with humans, leveraging deep reinforcement learning, large language models, and symbolic AI. Applied evidence-based, data-driven methodologies to solve complex real-world problems, enabling successful AI product deployments and contributing to 9 peer-reviewed publications and 3 patents.
-        - Managed collaborations across industries including aerospace and defense (e.g. [Thales](https://www.thalesgroup.com/), [CAE](https://www.cae.com/), and [NAV CANADA](https://www.navcanada.ca/)) ; energy (e.g. [RTE](https://www.rte-france.com/)) ; manufacturing (e.g. [Renault](https://www.renaultgroup.com/)) ; and academia (e.g. the [University of Alberta](https://www.ualberta.ca/), [MILA](https://mila.quebec/), and [IRT SystemX](https://www.irt-systemx.fr/)).
-      skills:
-        - Reinforcement learning (RL)
-        - Deep learning
-        - Large Language Models (LLM)
-        - Simulation
-        - Python
-        - Go
-        - Javascript
-        - Kubernetes
-        - AWS
-        - Azure
+        - Post-acquisition, I took charge of the AI roadmap at CM Labs, both as an architect and program lead.
+        - Design and build AI systems that assist trainees and instructors in real-time, using RL and LLMs.
+        - Set up MLOps practices and infrastructure to support scalable agent development, training, and deployment across products.
+    - from: 2021-02
+      to: 2025-04
+      location: Montréal, Canada
+      title: >
+        VP of Engineering - [**AI Redefined** (AIR - acquired by CM Labs
+        Simulations)](https://www.ai-r.com)
+      description: |
+        - Scaled AIR from early prototypes to a real business: grew a distributed team of 16+ engineers and researchers, adopted an open-core SaaS approach, and hit ~$1.5M ARR.
+        - Built human-AI collaboration tech using RL, LLMs, and symbolic AI. Shipped real-world deployments, published 9 papers, and filed 3 patents.
+        - Led strategic partnerships across aerospace, energy, and academia ([Thales](https://www.thalesgroup.com/), [CAE](https://www.cae.com/), [RTE](https://www.rte-france.com/), the [University of Alberta](https://www.ualberta.ca/), [MILA](https://mila.quebec/), ...) and made sure the tech delivered.
+        - Ran technical due diligence during acquisition talks and helped land a successful exit.
     - from: 2020-08
       to: 2021-01
       location: Paris, France
@@ -65,21 +67,10 @@ experiences:
       title: >
         Co-founder & CTO - [**craft ai**](https://www.craft.ai/)
       description: |
-        - Cofounded and scaled the company to 20+ employees, securing ~9M€ in funding.
-        - Directed product development and research teams, managing budgets, roadmaps, and resources to generate ~1M€ ARR and deliver 5 peer-reviewed papers.
-        - Led the architecture and development of an explainable AI SaaS for time series modeling & forecasting, enabling trustworthy personalized decision support and automation across industries.
-        - Deployed the product across ~10 AI projects, primarily in the energy sector, including with [EDF](https://www.edfenergy.com/) and [Total](https://www.totalenergies.fr), resulting in significant operational optimizations for end-users.
-      skills:
-        - Explainable AI
-        - Machine learning
-        - Data science
-        - Python
-        - Rust
-        - Javascript
-        - Kubernetes
-        - Kafka
-        - AWS
-        - Azure
+        - Co-founded craft ai and grew it to 20+ people, raising ~€9M and building a product that brought explainable AI into real-world operations.
+        - Led product and engineering — shipped an AI SaaS for time series forecasting and decision support, used across ~10 B2B projects (incl. [EDF](https://www.edfenergy.com/), [Total](https://www.totalenergies.fr)), resulting in significant operational optimizations for end-users.
+        - Turned tech & research into IP and revenue: 5 peer-reviewed papers, strong ARR (~€1M), and deployments that actually moved the needle for customers.
+        - Built and scaled the tech team, managed roadmaps, budgets, and everything in between to get us from concept to commercial traction.
     - from: 2012-01
       to: 2015-02
       location: Paris, France
@@ -89,12 +80,6 @@ experiences:
       description: |
         - Managed a team of ~5 software engineers across Paris and Munich, aligning priorities and resource allocation with company leadership to meet project goals.
         - Architected and developed an AI agent authoring tool and runtime, featuring behavior tree & spatial reasoning engines. Empowered instructional and game designers to create AI agents for simulations and video games, creating key intellectual property that later became the foundation of **craft ai**.
-      skills:
-        - Game AI
-        - Computational geometry
-        - Simulation
-        - Qt
-        - C++
     - from: 2010-01
       to: 2011-12
       location: Rennes, France
@@ -104,12 +89,6 @@ experiences:
       description: |
         - Led the development of the navigation engine for virtual crowds, industrializing research prototypes and algorithms developed at Inria.
         - Delivered diverse applications of crowd simulation technology, including train car evaluation for [SNCF](https://www.groupe-sncf.com), real-time virtual city population with [Dassault Systèmes](https://www.3ds.com) and crowd simulation for a historical documentary with [Mikros](https://www.technicolor.com/studios/mikros-animation/). These efforts contributed to the leading crowd simulation product for the animation and VFX market.
-      skills:
-        - Game AI
-        - Computational geometry
-        - Simulation
-        - Qt
-        - C++
     - from: 2009-02
       to: 2009-12
       location: Rennes, France
@@ -126,13 +105,6 @@ experiences:
       description: |
         - Developed a toolchain to create virtual cities for [Orange](https://www.orange.fr), resulting in pedestrian-level digital recreation of Paris and Barcelona.
         - Developed a contribution system for [PagesJaunes.fr](https://www.pagesjaunes.fr), enhancing the platform’s user engagement.
-      skills:
-        - Geographic information systems (GIS)
-        - Computational geometry
-        - Simulation
-        - Qt
-        - C++
-        - Java
   more:
     title: Additional activities
     items:
