@@ -82,6 +82,47 @@ function RightCol({ className, ...otherProps }) {
   );
 }
 
+function SkillsBlock({
+  className,
+  title,
+  titleAs,
+  skills,
+  compact = false,
+  ...otherProps
+}) {
+  if (!skills.length) {
+    return null;
+  }
+  return (
+    <div
+      className={clsx(
+        'text-sm border-l-4 border-blue pl-2 py-0 my-0 prose-p:my-1 prose-ul:list-none prose-ul:pl-0',
+        compact && 'prose-p:inline prose-headings:inline',
+        className
+      )}
+      {...otherProps}
+    >
+      {compact ? (
+        <>
+          <Title as={titleAs}>{title + ' - '}</Title>
+          <Mdx>{skills.join(', ') + '.'}</Mdx>
+        </>
+      ) : (
+        <>
+          <Title as={titleAs}>{title}</Title>
+          <ul>
+            {skills.map((skill, index) => (
+              <li key={index}>
+                <Mdx>{skill}</Mdx>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+}
+
 export default async function Resume({ params: { locale } }) {
   const intl = await getIntl(locale);
 
@@ -92,11 +133,11 @@ export default async function Resume({ params: { locale } }) {
     },
     skills: {
       id: 'item.skills',
-      defaultMessage: 'Skills: '
+      defaultMessage: 'Skills'
     },
     keySkills: {
       id: 'item.keySkills',
-      defaultMessage: 'Key skills: '
+      defaultMessage: 'Key skills'
     }
   });
 
@@ -144,14 +185,11 @@ export default async function Resume({ params: { locale } }) {
       </LeftCol>
       <RightCol>
         <ItemDescription className="">{resume.intro}</ItemDescription>
-        {resume.key_skills.length > 0 ? (
-          <p className="border-l-4 border-blue pl-2 py-1 my-0">
-            <span className="font-semibold">
-              {intl.formatMessage(messages.keySkills)}
-            </span>
-            {resume.key_skills.join(', ')}.
-          </p>
-        ) : null}
+        <SkillsBlock
+          title={intl.formatMessage(messages.keySkills)}
+          titleAs="h3"
+          skills={resume.key_skills}
+        />
       </RightCol>
       <LeftCol>
         <Title as="h2">{resume.experiences.title}</Title>
@@ -164,14 +202,12 @@ export default async function Resume({ params: { locale } }) {
                 {title}
               </ItemTitle>
               <ItemDescription>{description}</ItemDescription>
-              {skills.length > 0 ? (
-                <p className="text-sm border-l-4 border-blue pl-2 py-1 my-0">
-                  <span className="font-semibold">
-                    {intl.formatMessage(messages.skills)}
-                  </span>
-                  {skills.join(', ')}.
-                </p>
-              ) : null}
+              <SkillsBlock
+                title={intl.formatMessage(messages.skills)}
+                titleAs="h4"
+                skills={skills}
+                compact
+              />
             </section>
           )
         )}
@@ -189,14 +225,12 @@ export default async function Resume({ params: { locale } }) {
                 {title}
               </ItemTitle>
               <ItemDescription>{description}</ItemDescription>
-              {skills.length > 0 ? (
-                <p className="text-sm border-l-4 border-blue pl-2 py-1 my-0">
-                  <span className="font-semibold">
-                    {intl.formatMessage(messages.skills)}
-                  </span>
-                  {skills.join(', ')}.
-                </p>
-              ) : null}
+              <SkillsBlock
+                title={intl.formatMessage(messages.skills)}
+                titleAs="h5"
+                skills={skills}
+                compact
+              />
             </section>
           )
         )}

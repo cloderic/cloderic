@@ -158,6 +158,38 @@ function createItemTitle(title, from, to, location, intl) {
   ];
 }
 
+function createSkillsBlock(title, skills, compact = false) {
+  if (!skills.length) {
+    return [];
+  }
+  if (compact) {
+    return [
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${title} - `,
+            bold: true
+          }),
+          new TextRun({
+            text: `${skills.join(', ')}.`
+          })
+        ]
+      })
+    ];
+  }
+  return [
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: title,
+          bold: true
+        })
+      ]
+    }),
+    ...skills.map((skill) => createDocxFromMarkdown(skill)).flat()
+  ];
+}
+
 export async function GET(request, { params: { locale } }) {
   const intl = await getIntl(locale);
   const resume = await loadResume(locale);
@@ -327,21 +359,10 @@ export async function GET(request, { params: { locale } }) {
             ]
           }),
           ...createDocxFromMarkdown(resume.intro),
-          ...(resume.key_skills.length > 0
-            ? [
-                new Paragraph({
-                  children: [
-                    new TextRun({
-                      text: intl.formatMessage(messages.keySkills),
-                      bold: true
-                    }),
-                    new TextRun({
-                      text: `${resume.key_skills.join(', ')}.`
-                    })
-                  ]
-                })
-              ]
-            : [])
+          ...createSkillsBlock(
+            intl.formatMessage(messages.keySkills),
+            resume.key_skills
+          )
         ]
       },
       {
@@ -352,21 +373,7 @@ export async function GET(request, { params: { locale } }) {
             .map(({ from, to, location, title, description, skills = [] }) => [
               ...createItemTitle(title, from, to, location, intl),
               ...createDocxFromMarkdown(description),
-              ...(skills.length > 0
-                ? [
-                    new Paragraph({
-                      children: [
-                        new TextRun({
-                          text: intl.formatMessage(messages.skills),
-                          bold: true
-                        }),
-                        new TextRun({
-                          text: `${skills.join(', ')}.`
-                        })
-                      ]
-                    })
-                  ]
-                : [])
+              ...createSkillsBlock(intl.formatMessage(messages.skills), skills)
             ])
             .flat(),
           ...createHeading2(resume.experiences.more.title),
@@ -374,21 +381,7 @@ export async function GET(request, { params: { locale } }) {
             .map(({ from, to, location, title, description, skills = [] }) => [
               ...createItemTitle(title, from, to, location, intl),
               ...createDocxFromMarkdown(description),
-              ...(skills.length > 0
-                ? [
-                    new Paragraph({
-                      children: [
-                        new TextRun({
-                          text: intl.formatMessage(messages.skills),
-                          bold: true
-                        }),
-                        new TextRun({
-                          text: `${skills.join(', ')}.`
-                        })
-                      ]
-                    })
-                  ]
-                : [])
+              ...createSkillsBlock(intl.formatMessage(messages.skills), skills)
             ])
             .flat()
         ]
