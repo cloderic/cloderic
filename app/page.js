@@ -109,6 +109,14 @@ export default async function Home() {
         </li>
         <li>
           <Link
+            href="/bookmarks"
+            className="text-blue text-lg hover:underline py-2 px-4 bg-pink rounded-full"
+          >
+            Bookmarks
+          </Link>
+        </li>
+        <li>
+          <Link
             href="/content"
             className="text-blue text-lg hover:underline py-2 px-4 bg-pink rounded-full"
           >
