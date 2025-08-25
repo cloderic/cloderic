@@ -21,3 +21,7 @@ You can contact me on [Bluesky](https://bsky.app/profile/cloderic.com)
 or [LinkedIn](https://www.linkedin.com/in/cloderic/)
 
 ... and don't forget to check my [Soundcloud](https://soundcloud.com/cloderic)!
+
+#### Links
+
+- [Bookmarks](/app/bookmarks/bookmarks.md)
