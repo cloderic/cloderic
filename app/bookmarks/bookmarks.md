@@ -12,3 +12,5 @@ title: ❤ Awesome Bookmarks
   guidelines for command line interfaces.
 - [Go slice tricks](https://go.dev/wiki/SliceTricks): A collection of idiomatic
   ways to manipulate slices in Go.
+- [Learn Git Branching](https://learngitbranching.js.org/): A web-based game
+  teaching basic (and not so basic) git concepts.
