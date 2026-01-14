@@ -31,20 +31,30 @@ key_skills:
 experiences:
   title: Expériences
   items:
-    - from: 2025-04
+    - from: 2026-01
       location: Montréal, Canada
       title: >
-        Principal AI/ML Platform Architect - [**CM Labs
+        Director of Engineering & AI Architect - [**CM Labs
         Simulations**](https://www.cm-labs.com)
       description: |
-        - Définition et pilotage de la feuille de route IA suite à l’acquisition d’AIR, à la fois comme architecte et gestionnaire de programme.
-        - Conception et développement de systèmes IA qui assistent les instructeurs et les étudiants en temps réel, basés sur l’apprentissage par renforcement (RL) et les modèles de langage (LLM).
-        - Mise en place de pratiques et infrastructures MLOps pour soutenir le développement, l'entraînement et le déploiement à grande échelle d'agents IA sur plusieurs produits.
+        - Pilotage de l’ingénierie du produit Vortex Studio, la plateforme de simulation physique en temps réel de CM Labs, dédiée aux simulateurs d’entraînement, aux jumeaux numériques pour l’ingénierie et à l’IA physique.
+        - Conception et mise en œuvre de l’architecture IA pour l’apprentissage adaptatif au sein des simulateurs d’entraînement de CM Labs, reposant sur des systèmes agentiques combinant intelligence conversationnelle et comportements incarnés en simulation.
+        - Animation d’une organisation d’ingénierie pluridisciplinaire, réunissant des expertises en physique, simulation et IA, afin de concevoir des systèmes industriels, robustes et scalables.
+    - from: 2025-04
+      to: 2025-12
+      location: Montréal, Canada
+      title: >
+        Principal AI/ML Platform Architect - **CM Labs Simulations**
+      description: |
+        _À la suite de l’acquisition d’AI Redefined par CM Labs en avril 2025, j’ai pris en charge la définition et le pilotage de la feuille de route IA de CM Labs._
+        - Définition et pilotage de la feuille de route d’apprentissage adaptatif, en coordonnant quatre équipes pour livrer un MVP en six mois.
+        - Conception et développement de systèmes IA temps réel assistant les apprenants et les instructeurs, combinant contrôleurs analytiques, apprentissage par renforcement (RL) et modèles de langage (LLM).
+        - Mise en place des pratiques et infrastructures MLOps afin de permettre le développement, l’entraînement et le déploiement à l’échelle d’agents IA sur plusieurs produits.
     - from: 2021-02
       to: 2025-04
       location: Montréal, Canada
       title: >
-        VP of Engineering - [**AI Redefined** (AIR - acquis par CM Labs
+        VP of Engineering - [**AI Redefined** (acquis par CM Labs
         Simulations)](https://www.ai-r.com)
       description: |
         - Structuration d’une équipe distribuée de 16+ ingénieurs et chercheurs, avec mise en place de processus agiles et orientation produit, ayant permis de générer ~1,5M$ de revenus récurrents via un modèle SaaS open-core.
