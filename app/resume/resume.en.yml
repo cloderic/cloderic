@@ -34,20 +34,30 @@ key_skills:
 experiences:
   title: Experiences
   items:
-    - from: 2025-04
+    - from: 2026-01
       location: Montréal, Canada
       title: >
-        Principal AI/ML Platform Architect - [**CM Labs
+        Director of Engineering & AI Architect - [**CM Labs
         Simulations**](https://www.cm-labs.com)
       description: |
-        - Post-acquisition, I took charge of the AI roadmap at CM Labs, both as an architect and program lead.
-        - Design and build AI systems that assist trainees and instructors in real-time, using RL and LLMs.
-        - Set up MLOps practices and infrastructure to support scalable agent development, training, and deployment across products.
+        - Lead Vortex Studio product engineering, CM Labs’ real-time physics simulation platform for training simulation, digital twins for engineering, and physical AI.
+        - Drive CM Labs’ AI architecture for training simulation products, delivering adaptive learning through agentic systems combining conversational intelligence with embodied behavior in simulation.
+        - Cultivate a multidisciplinary engineering organization, bringing together expertise in physics, simulation, and AI to deliver scalable, production-grade systems.
+    - from: 2025-04
+      to: 2025-12
+      location: Montréal, Canada
+      title: >
+        Principal AI/ML Platform Architect - **CM Labs Simulations**
+      description: |
+        _Following the acquisition of AI Redefined by CM Labs in April 2025, I assumed ownership of CM Labs’ AI roadmap._
+        - Defined and drove the adaptive learning roadmap, coordinating four teams to deliver an end-to-end MVP within six months.
+        - Designed and built real-time AI systems assisting trainees and instructors, leveraging analytical controllers, reinforcement learning and large language models.
+        - Established MLOps practices and infrastructure to enable scalable agent development, training, and deployment across multiple products.
     - from: 2021-02
       to: 2025-04
       location: Montréal, Canada
       title: >
-        VP of Engineering - [**AI Redefined** (AIR - acquired by CM Labs
+        VP of Engineering - [**AI Redefined** (acquired by CM Labs
         Simulations)](https://www.ai-r.com)
       description: |
         - Scaled AIR from early prototypes to a real business: grew a distributed team of 16+ engineers and researchers, adopted an open-core SaaS approach, and hit ~$1.5M ARR.
