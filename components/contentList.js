@@ -15,6 +15,7 @@ const CATEGORY_PICTOS = {
   other_publications: '🖊️',
   talk: '🎙️',
   music: '🎸',
+  live_music: '🎸',
   notes: '📝',
   mooc: '📚'
 };
