@@ -24,7 +24,7 @@
     "@types/mdx": "^2.0.12",
     "clsx": "^2.1.0",
     "docx": "^8.5.0",
-    "glob": "^10.3.12",
+    "glob": "^10.5.0",
     "highlight.js": "^11.9.0",
     "lodash.debounce": "^4.0.8",
     "lodash.difference": "^4.5.0",
