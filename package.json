@@ -41,7 +41,7 @@
     "react-tweet": "^3.2.1",
     "rehype-highlight": "^7.0.0",
     "remark-parse": "^11.0.0",
-    "sharp": "^0.33.3",
+    "sharp": "^0.35.0",
     "unified": "^11.0.5",
     "yaml": "^2.4.2"
   },
