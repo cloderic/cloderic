@@ -1,0 +1,79 @@
+---
+title:
+  'Autonomous Earthmoving: Classical Control Guidance Makes Long-Horizon
+  Trenching Reliably Trainable'
+description:
+  Blending an untuned inverse-kinematics controller with a reinforcement
+  learning policy makes training a six-stage excavator trenching cycle reliable
+  in Vortex Studio.
+venue: Workshop on Future of Construction at IROS, Pittsburgh, Pennsylvania
+date: 2026-09-27
+categories:
+  - highlights
+  - publication
+  - resume
+authors:
+  - Evelin Fonseca Cruz
+  - Joe Hewlett
+  - Laszlo Kovacs
+  - Sai Krishna Gottipati
+  - Adam Bognat
+  - Manhtriet Hoang
+  - Clodéric Mars
+---
+
+This paper was presented as a poster at the
+[5th Workshop on Future of Construction](https://construction-robots.github.io/index2026.html)
+at IROS 2026, in Pittsburgh. All authors are part of my team, the
+[Vortex Studio](https://docs.vortexsim.com/latest_ga/) team at
+[CM Labs](https://cm-labs.com).
+
+We look at excavator trenching, a representative earthmoving task with a long
+horizon: how much soil the bucket takes when digging sets the load for every
+stage that follows. We split the trenching cycle into six goal-conditioned
+stages and train in Vortex Studio, simulating multibody dynamics, hydraulic
+actuation and deformable terrain. At each step, the action blends the command of
+an untuned resolved-rate inverse kinematics controller with the output of a Soft
+Actor-Critic policy. The policy's share of authority is either fixed for a whole
+run or annealed from the controller to the policy during training, an approach
+we call Action Blending Curriculum over Residual Reinforcement Learning
+(ABC-RRL).
+
+Neither extreme is reliable on its own: the controller alone never completes a
+cycle, and unguided reinforcement learning converged on only one seed out of
+three. With classical guidance, every seed converges, and the curriculum keeps
+that reliability once the policy has full authority, reaching 94.7–97.3%
+success.
+
+More details are available on the
+[project page](https://cm-labs-simulations.github.io/autonomous-trenching/), and
+the paper and its reviews are on
+[OpenReview](https://openreview.net/forum?id=cFvZUn4lrZ).
+
+## Poster
+
+<Pdf
+  title={frontmatter.title}
+  href="https://cm-labs-simulations.github.io/autonomous-trenching/"
+  src="/content/2026-09-27-iros-autonomous-trenching/autonomous-trenching-poster.pdf"
+  className="aspect-square"
+/>
+
+## Cite
+
+```bibtex
+@inproceedings{autonomoustrenching2026,
+  title={Autonomous Earthmoving: Classical Control Guidance Makes Long-Horizon Trenching Reliably Trainable},
+  author={
+    Fonseca Cruz, Evelin and
+    Hewlett, Joe and
+    Kovacs, Laszlo and
+    Gottipati, Sai Krishna and
+    Bognat, Adam and
+    Hoang, Manhtriet and
+    Mars, Clod{\'e}ric
+  },
+  booktitle={5th Workshop on Future of Construction at IROS 2026},
+  year={2026}
+}
+```
