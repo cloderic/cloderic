@@ -24,19 +24,20 @@ authors:
 
 This paper was presented as a poster at the
 [5th Workshop on Future of Construction](https://construction-robots.github.io/index2026.html)
-at IROS 2026, in Pittsburgh. All authors are from
+at IROS 2026, in Pittsburgh. All authors are part of my team, the
+[Vortex Studio](https://docs.vortexsim.com/latest_ga/) team at
 [CM Labs](https://cm-labs.com).
 
 We look at excavator trenching, a representative earthmoving task with a long
 horizon: how much soil the bucket takes when digging sets the load for every
 stage that follows. We split the trenching cycle into six goal-conditioned
-stages and train in [Vortex Studio](https://docs.vortexsim.com/latest_ga/),
-simulating multibody dynamics, hydraulic actuation and deformable terrain. At
-each step, the action blends the command of an untuned resolved-rate inverse
-kinematics controller with the output of a Soft Actor-Critic policy. The
-policy's share of authority is either fixed for a whole run or annealed from the
-controller to the policy during training, an approach we call Action Blending
-Curriculum over Residual Reinforcement Learning (ABC-RRL).
+stages and train in Vortex Studio, simulating multibody dynamics, hydraulic
+actuation and deformable terrain. At each step, the action blends the command of
+an untuned resolved-rate inverse kinematics controller with the output of a Soft
+Actor-Critic policy. The policy's share of authority is either fixed for a whole
+run or annealed from the controller to the policy during training, an approach
+we call Action Blending Curriculum over Residual Reinforcement Learning
+(ABC-RRL).
 
 Neither extreme is reliable on its own: the controller alone never completes a
 cycle, and unguided reinforcement learning converged on only one seed out of
